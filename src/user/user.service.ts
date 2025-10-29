@@ -8,14 +8,14 @@ import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import * as bcrypt from 'bcrypt';
 import { CreateUserDto } from './dto/create-user.dto';
 
-interface User {
+export interface User {
   id?: string;
   email: string;
   password: string;
   created_at: string;
 }
 
-interface UserWithoutPassword {
+export interface UserWithoutPassword {
   id?: string;
   email: string;
   created_at: string;
