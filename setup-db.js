@@ -4,7 +4,7 @@ require('dotenv').config({ path: '.env.local' });
 async function setupDatabase() {
   const supabase = createClient(
     process.env.SUPABASE_URL,
-    process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_KEY
+    process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY
   );
 
   try {
@@ -21,11 +21,11 @@ async function setupDatabase() {
       console.log('\nPlease run this SQL in your Supabase SQL Editor:');
       console.log('Go to: https://app.supabase.com/project/flrdgekqzdolnddwtpmy/sql\n');
       console.log(`CREATE TABLE IF NOT EXISTS users (
-  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  email TEXT UNIQUE NOT NULL,
-  password TEXT NOT NULL,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-);`);
+        id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+        email TEXT UNIQUE NOT NULL,
+        password TEXT NOT NULL,
+        created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+      );`);
       console.log('\nAfter running the SQL, the registration API will work!');
     } else {
       console.log('Users table already exists and is accessible!');
